@@ -3,22 +3,24 @@
 {% block content %}
 <div class="toolbar">
     <h1>IT-қолдау өтінімдері</h1>
-    <a class="button" href="{% url 'ticket_create' %}">Өтінім қосу</a>
+    <a class="button" href="{% url 'ticket_create' %}"><span aria-hidden="true">+</span> Өтінім қосу</a>
 </div>
+<div class="ticket-grid">
 {% for ticket in tickets %}
-<article class="panel">
+<article class="panel ticket">
+    <div class="meta">
+        <span class="badge status">Күйі: {{ ticket.get_status_display }}</span>
+        <span class="badge priority-{{ ticket.priority }}">Басымдық: {{ ticket.get_priority_display }}</span>
+    </div>
     <h2>{{ ticket.title }}</h2>
     <p class="description">{{ ticket.description }}</p>
-    <div class="meta">
-        <span class="badge">Күйі: {{ ticket.get_status_display }}</span>
-        <span class="badge">Басымдық: {{ ticket.get_priority_display }}</span>
-    </div>
     <div class="actions">
-        <a href="{% url 'ticket_edit' ticket.pk %}">Өңдеу</a>
-        <a href="{% url 'ticket_delete' ticket.pk %}">Жою</a>
+        <a class="button secondary" href="{% url 'ticket_edit' ticket.pk %}">Өңдеу</a>
+        <a class="button text-danger" href="{% url 'ticket_delete' ticket.pk %}">Жою</a>
     </div>
 </article>
 {% empty %}
-<p>Әзірге өтінім жоқ.</p>
+<p class="panel empty">Әзірге өтінім жоқ.</p>
 {% endfor %}
+</div>
 {% endblock %}
