@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Өтінімді жою{% endblock %}
+{% block content %}
+<h1>Өтінімді жою</h1>
+<form method="post" class="panel">
+    {% csrf_token %}
+    <p>«{{ ticket.title }}» өтінімін жоясыз ба?</p>
+    <div class="actions">
+        <button class="danger" type="submit">Жою</button>
+        <a href="{% url 'ticket_list' %}">Бас тарту</a>
+    </div>
+</form>
+{% endblock %}

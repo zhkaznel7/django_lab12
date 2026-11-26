@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ heading }}{% endblock %}
+{% block content %}
+<h1>{{ heading }}</h1>
+{% if product %}<p>{{ product.name }}</p>{% endif %}
+<form method="post" class="panel">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <div class="actions">
+        <button type="submit">Сақтау</button>
+        <a href="{% url 'ticket_list' %}">Бас тарту</a>
+    </div>
+</form>
+{% endblock %}

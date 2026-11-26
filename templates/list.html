@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}IT-қолдау өтінімдері{% endblock %}
+{% block content %}
+<div class="toolbar">
+    <h1>IT-қолдау өтінімдері</h1>
+    <a class="button" href="{% url 'ticket_create' %}">Өтінім қосу</a>
+</div>
+{% for ticket in tickets %}
+<article class="panel">
+    <h2>{{ ticket.title }}</h2>
+    <p class="description">{{ ticket.description }}</p>
+    <div class="meta">
+        <span class="badge">Күйі: {{ ticket.get_status_display }}</span>
+        <span class="badge">Басымдық: {{ ticket.get_priority_display }}</span>
+    </div>
+    <div class="actions">
+        <a href="{% url 'ticket_edit' ticket.pk %}">Өңдеу</a>
+        <a href="{% url 'ticket_delete' ticket.pk %}">Жою</a>
+    </div>
+</article>
+{% empty %}
+<p>Әзірге өтінім жоқ.</p>
+{% endfor %}
+{% endblock %}

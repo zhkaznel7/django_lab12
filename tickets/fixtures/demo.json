@@ -1,0 +1,12 @@
+[
+  {
+    "model": "tickets.ticket",
+    "pk": 101,
+    "fields": {
+      "title": "Принтер қағазды тартпайды",
+      "description": "Кеңседегі принтерді тексеру қажет.",
+      "priority": "normal",
+      "status": "new"
+    }
+  }
+]
